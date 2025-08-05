@@ -1,6 +1,6 @@
 # Lazy Commit
 
-**Lazy Commit** is a CLI tool to help you generate conventional commit messages easily.
+**Lazy Commit** is a CLI tool to help you generate conventional commit messages easily and push .
 
 ## Prerequisites
 
@@ -11,7 +11,7 @@
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/your-username/lazy-commit.git
+   git clone https://github.com/RBen19/lazy-commit-.git
    ```
 
 2. **Navigate to the project directory:**
