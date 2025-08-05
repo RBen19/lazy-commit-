@@ -1,5 +1,30 @@
 #!/usr/bin/env node
 
+
+console.log('Script lancé !');
+console.log('\x1b[34m%s\x1b[0m', 'Bienvenue dans Lazy Commit !');
+
+const yargs = require('yargs/yargs');
+const { hideBin } = require('yargs/helpers');
+const generateCommit = require('./commands/generateCommit');
+
+
+yargs(hideBin(process.argv))
+  .usage('Usage: $0 <command> [options]')
+  .command(generateCommit)
+  .demandCommand(1, 'Please specify a valid command.')
+  .help()
+  .parse()
+
+/*
+
+yargs(hideBin(process.argv))
+  .usage('Usage: $0 <command> [options]')
+  .command(generateCommit)
+  .demandCommand(1, 'Please specify a valid command.')
+  .help()
+  .parse();
+// -------------
 console.log('Script lancé !');
 
 const yargs = require('yargs/yargs'); // instance principale de yargs
@@ -103,3 +128,4 @@ yargs(hideBin(process.argv))
   }
   return `refactor: update ${filePath}`;
 }
+*/
