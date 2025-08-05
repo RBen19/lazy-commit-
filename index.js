@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 
-console.log('Script lancé !');
+//console.log('Script lancé !');
 console.log('\x1b[34m%s\x1b[0m', 'Bienvenue dans Lazy Commit !');
 
 const yargs = require('yargs/yargs');
