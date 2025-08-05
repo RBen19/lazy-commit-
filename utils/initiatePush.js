@@ -19,3 +19,4 @@ function getPushCommand() {
     return null;
   }
 }
+module.exports = getPushCommand;
