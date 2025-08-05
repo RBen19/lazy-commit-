@@ -8,7 +8,9 @@ const yargs = require('yargs/yargs');
 const { hideBin } = require('yargs/helpers');
 const generateCommit = require('./commands/generateCommit');
 const generatePush = require('./commands/generatePush');
+const { showBanner } = require('./utils/banners');
 
+showBanner('byMisterBeniR', 'slant', '\\x1b[32m');
 
 yargs(hideBin(process.argv))
   .usage('Usage: $0 <command> [options]')
