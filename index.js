@@ -88,12 +88,24 @@ yargs(hideBin(process.argv)) // retire le node du chemin du script
   function generateCommitMessage(filePath) {
   // Logique simple pour le moment : on se base sur l'extension
   const extension = filePath.split('.').pop();
-  if (extension === 'md') {
+  if (extension === 'md' || 
+    filePath.includes('README') || 
+    filePath.includes('docs') || 
+    filePath.includes('documentation') || 
+    filePath.includes('doc') || 
+    filePath.includes('readme') 
+) {
     return 'docs: update documentation';
   }
   if (extension === 'css' || extension === 'scss') {
     return 'style: update styles';
   }
-  // Si on ne détecte rien de spécifique, on propose une fonctionnalité
-  return `feat: add ${filePath}`;
+  if (filePath.includes('test') || filePath.includes('spec')) {
+    return 'test: update tests';
+  }
+  const gitStatus = execSync(`git status --porcelain "${filePath}"`).toString().trim();
+  if (gitStatus.startsWith('A')) {
+    return `feat: add ${filePath}`;
+  }
+  return `refactor: update ${filePath}`;
 }
