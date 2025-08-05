@@ -13,7 +13,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "inquirer": "^12.9.0",
+    "inquirer": "^8.2.6",
     "yargs": "^18.0.0"
   }
 }
