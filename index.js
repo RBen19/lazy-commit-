@@ -7,15 +7,16 @@ console.log('\x1b[34m%s\x1b[0m', 'Bienvenue dans Lazy Commit !');
 const yargs = require('yargs/yargs');
 const { hideBin } = require('yargs/helpers');
 const generateCommit = require('./commands/generateCommit');
+const generatePush = require('./commands/generatePush');
 
 
 yargs(hideBin(process.argv))
   .usage('Usage: $0 <command> [options]')
   .command(generateCommit)
+  .command(generatePush)
   .demandCommand(1, 'Please specify a valid command.')
   .help()
-  .parse()
-
+  .parse();
 /*
 
 yargs(hideBin(process.argv))
