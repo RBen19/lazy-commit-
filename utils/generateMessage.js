@@ -21,17 +21,14 @@ function generateCommitMessage(filePath) {
   }
 
   try {
-    // Vérifier le statut global d'abord pour voir si le fichier est nouveau
     const globalStatus = execSync('git status --porcelain').toString();
     const fileStatus = globalStatus.split('\n').find(line => line.includes(filePath));
     
     if (fileStatus) {
       const statusCode = fileStatus.substring(0, 2);
-      // ?? = untracked (nouveau fichier)
       if (statusCode.includes('?')) {
         return `feat: add ${filePath}`;
       }
-      // A = added (nouveau fichier stagé)
       if (statusCode.includes('A')) {
         return `feat: add ${filePath}`;
       }
