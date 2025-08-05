@@ -22,11 +22,15 @@ module.exports = {
         return;
       }
 
-     const files = status
+        const files = status
   .split('\n')
   .filter(line => line.trim() !== '')
-  .map(line => line.slice(3).trim()) // slice(3) pour ignorer le code de statut + espace
-  .filter(file => fs.existsSync(file)); 
+  .map(line => {
+    // Extrait le nom du fichier après le code de statut
+    const match = line.match(/^[ MADRCU?!]{1,2}\s+(.*)$/);
+    return match ? match[1] : null;
+  })
+  .filter(file => file); // garde tous les fichiers listés
       for (const file of files) {
         const suggestedMessage = generateCommitMessage(file);
 
