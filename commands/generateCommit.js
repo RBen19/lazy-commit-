@@ -16,7 +16,7 @@ module.exports = {
         default: false,
       });
     },
-  handler: async () => {
+  handler: async (argv) => {
     console.log('\x1b[34m%s\x1b[0m', 'Generating a conventional commit...');
 
     if (!isGitRepository()) {
@@ -32,7 +32,6 @@ module.exports = {
         message: 'Aucun remote n\'a été détecté. Le push ne sera pas possible. Continuer ?',
         default: true
       }]).then(answers => answers.confirm))) {
-        // Si l'utilisateur a forcé le push ou souhaite continuer sans remote, on l'avertit
         if(argv.push) {
           console.log('\x1b[33m%s\x1b[0m', 'Attention : Aucun remote détecté, la commande --push sera ignorée.');
         }
