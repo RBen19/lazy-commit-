@@ -37,7 +37,7 @@ I hope it saves you time, effort, and a bit of frustration.
 2. **Navigate to the project directory:**
 
    ```bash
-   cd lazy-commit
+   cd lazy-commit-
    ```
 
 3. **Install dependencies and link the tool globally:**
