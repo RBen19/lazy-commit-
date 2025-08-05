@@ -1,12 +1,13 @@
 #!/usr/bin/env node
 
 console.log('Script lancé !');
-const yargs = require('yargs/yargs');
+
+const yargs = require('yargs/yargs'); // instance principale de yargs
 const { hideBin } = require('yargs/helpers');
 const { execSync } = require('child_process');
 const inquirer = require('inquirer');
-
 console.log('\x1b[34m%s\x1b[0m', 'Bienvenue dans Lazy Commit !');
+
 // Vérification si le répertoire est un dépôt Git
 function isGitRepository() {
   try {
@@ -18,7 +19,7 @@ function isGitRepository() {
   }
 }
 // genère le commit et avant vérifie si le répertoire est un dépôt Git
-yargs(hideBin(process.argv))
+yargs(hideBin(process.argv)) // retire le node du chemin du script 
   .usage('Usage: $0 <command> [options]')
   .command({
     command: 'generate-commit',
@@ -39,9 +40,10 @@ yargs(hideBin(process.argv))
           return;
         }
 
-        const files = status.split('\n') // On divise les lignes
-        .map(line => line.substring(3) // On récupère le nom du fichier (en ignorant les 3 premiers caractères)
-        .trim()); // On nettoie les espaces
+             const files = status
+                .split('\n')
+                .filter(line => line.trim() !== '') // éviter les lignes vides
+                .map(line => line.slice(2).trim()); // On extrait le nom du fichier à partir de la ligne de statut
 
         for (const file of files) {
           // 2. On génère un message pour chaque fichier
