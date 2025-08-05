@@ -18,8 +18,7 @@ function isGitRepository() {
     return false;
   }
 }
-// genère le commit et avant vérifie si le répertoire est un dépôt Git
-yargs(hideBin(process.argv)) // retire le node du chemin du script 
+yargs(hideBin(process.argv)) 
   .usage('Usage: $0 <command> [options]')
   .command({
     command: 'generate-commit',
@@ -33,7 +32,6 @@ yargs(hideBin(process.argv)) // retire le node du chemin du script
         process.exit(1);
       }
         try {
-        // 1. On récupère la liste des fichiers modifiés
         const status = execSync('git status --porcelain').toString().trim();
         if (!status) {
           console.log('\x1b[33m%s\x1b[0m', 'No files to commit. Please stage some files first.');
@@ -43,13 +41,11 @@ yargs(hideBin(process.argv)) // retire le node du chemin du script
              const files = status
                 .split('\n')
                 .filter(line => line.trim() !== '') // éviter les lignes vides
-                .map(line => line.slice(2).trim()); // On extrait le nom du fichier à partir de la ligne de statut
+                .map(line => line.slice(2).trim()); 
 
         for (const file of files) {
-          // 2. On génère un message pour chaque fichier
           const suggestedMessage = generateCommitMessage(file);
 
-          // 3. On demande à l'utilisateur de valider
           const answers = await inquirer.prompt([
             {
               type: 'confirm',
@@ -84,9 +80,7 @@ yargs(hideBin(process.argv)) // retire le node du chemin du script
   .help()
   .argv;
 
-  // Fonction pour générer un message de commit basé sur le fichier
   function generateCommitMessage(filePath) {
-  // Logique simple pour le moment : on se base sur l'extension
   const extension = filePath.split('.').pop();
   if (extension === 'md' || 
     filePath.includes('README') || 
