@@ -1,23 +1,29 @@
 const { execSync } = require('child_process');
-
+const { getUserDefinedFolders, getFolderScope } = require("../utils/scope");
+const path = require('path');
+const fs = require('fs');
 function generateCommitMessage(filePath) {
   const extension = filePath.split('.').pop();
-
+  const folders = getUserDefinedFolders();
+  const scope = getFolderScope(filePath, folders);
   if (
     extension === 'md' ||
     filePath.toLowerCase().includes('readme') ||
     filePath.toLowerCase().includes('docs') ||
     filePath.toLowerCase().includes('doc') 
   ) {
-    return 'docs: update documentation';
+     return `docs(${scope}): update documentation`;
   }
 
   if (extension === 'css' || extension === 'scss') {
-    return 'style: update styles';
+    return `style(${scope}): update styles`;
   }
 
   if (filePath.toLowerCase().includes('test') || filePath.toLowerCase().includes('spec')) {
-    return 'test: update tests';
+    return `test(${scope}): update tests`;
+  }
+    if( filePath.toLowerCase().includes('config')  && scope === '' ) {
+    return `config: update configuration file ${filePath}`;
   }
 
   try {
@@ -27,17 +33,20 @@ function generateCommitMessage(filePath) {
     if (fileStatus) {
       const statusCode = fileStatus.substring(0, 2);
       if (statusCode.includes('?')) {
-        return `feat: add ${filePath}`;
+        return `feat(${scope}): add ${filePath}`;
       }
       if (statusCode.includes('A')) {
-        return `feat: add ${filePath}`;
+        return `feat(${scope}): add ${filePath}`;
       }
     }
   } catch {
     // ignore errors
   }
+  if( scope === '' ) {
+    return `update: update ${filePath}`;
+  }
+  return `update(${scope}): update ${filePath}`;
 
-  return `refactor: update ${filePath}`;
 }
 
 module.exports = generateCommitMessage;
