@@ -57,6 +57,9 @@ lazy --help
 ```
 ## some command example
 ```bash
+lazy i
+```
+```bash
 lazy gc
 ```
 ```bash
