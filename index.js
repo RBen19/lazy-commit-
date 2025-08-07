@@ -2,7 +2,7 @@
 
 
 //console.log('Script lancé !');
-console.log('\x1b[34m%s\x1b[0m', 'Bienvenue dans Lazy Commit !');
+console.log('\x1b[34m%s\x1b[0m', 'welcome to Lazy Commit !');
 
 const yargs = require('yargs/yargs');
 const { hideBin } = require('yargs/helpers');
