@@ -1,0 +1,13 @@
+{
+  "folders": {
+    "api": "api",
+    "dto": "dto",
+    "mappers": "mappers",
+    "services": "services",
+    "utils": "utils",
+    "docs": "docs",
+    "tests": "tests",
+    "config": "config",
+    "commands": "commands"
+  }
+}
