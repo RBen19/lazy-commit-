@@ -8,9 +8,9 @@ function generateCommitMessage(filePath) {
   const scope = getFolderScope(filePath, folders);
   if (
     extension === 'md' ||
-    filePath.toLowerCase().includes('readme') ||
-    filePath.toLowerCase().includes('docs') ||
-    filePath.toLowerCase().includes('doc') 
+    filePath.toLowerCase().includes('readme') 
+   // filePath.toLowerCase().includes('docs') ||
+   // filePath.toLowerCase().includes('doc') 
   ) {
      return `docs(${scope}): update documentation`;
   }
@@ -18,8 +18,9 @@ function generateCommitMessage(filePath) {
   if (extension === 'css' || extension === 'scss') {
     return `style(${scope}): update styles`;
   }
+  //|| filePath.toLowerCase().includes('spec')
 
-  if (filePath.toLowerCase().includes('test') || filePath.toLowerCase().includes('spec')) {
+  if (filePath.toLowerCase().includes('test')) {
     return `test(${scope}): update tests`;
   }
     if( filePath.toLowerCase().includes('config')  && scope === '' ) {
